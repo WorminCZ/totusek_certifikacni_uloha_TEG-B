@@ -1,0 +1,19 @@
+{
+  "name": "totusek_certifikacni_uloha_teg-b",
+  "version": "1.0.0",
+  "description": "Repozitáž k závěrečné úloze Cypress Akademie",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "run test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.5.0",
+    "cypress-xpath": "^2.0.1"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.9.0"
+  }
+}
