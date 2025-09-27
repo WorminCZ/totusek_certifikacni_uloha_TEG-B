@@ -1,0 +1,21 @@
+{
+  "dashboard": {
+    "headerText": "TEG#B Dashboard",
+    "logoutButtonText": "Odhlásit se",
+    "profileDetailsHeader": "Detaily Profilu",
+    "editProfileButtonText": "Upravit profil",
+    "firstName": "Jaroslav",
+    "lastName": "Totušek",
+    "email": "jara36@centrum.cz",
+    "telephone": "+420 725 755 655",
+    "age": 32
+  },
+  "leftMenu": ["Domů", "Účty", "Transakce", "Podpora"],
+  "account": {
+    "accountHeader": "Účty",
+    "startBalance": 10000,
+    "expectedBalance": 10000.001,
+    "type": "VIP Client",
+    "accountNumber": 1012664
+  }
+}
