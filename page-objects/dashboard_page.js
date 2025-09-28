@@ -1,13 +1,11 @@
 import { customElement } from "../helpers/custom_element";
 import { Header } from "./common/header_section";
-import { ProfileEdit } from "./edit_profile_page";
+import { EditProfileSection } from "./edit_profile_section";
 
 export class DashboardPage extends Header {
   constructor() {
     super();
-    //this.leftSidebarMenu = customElement(".dashboard-sidebar");
     this.leftSidebarMenuXpath = "(//aside[@class='dashboard-sidebar'])[1]";
-    this.editProfileButton = '[data-testid="toggle-edit-profile-button"]';
     this.firstNameField = customElement('[data-testid="name"]');
     this.lastNameField = customElement("[data-testid='surname']");
     this.emailField = customElement("[data-testid='email']");
@@ -16,8 +14,18 @@ export class DashboardPage extends Header {
     this.accountNumber = customElement('[data-testid="account-number"]');
     this.accountBalance = customElement('[data-testid="account-balance"]');
     this.accountType = customElement('[data-testid="account-type"]');
+    this.accountNumberHeading = customElement(
+      '[data-testid="account-number-heading"]'
+    );
+    this.accountBalanceHeading = customElement(
+      '[data-testid="account-balance-heading"]'
+    );
+    this.accountTypeHeading = customElement(
+      '[data-testid="account-type-heading"]'
+    );
+    this.editProfileButton = '[data-testid="toggle-edit-profile-button"]';
+    this.profileDetailsTitle = "[data-testid='profile-details-title']";
     this.logoutButtonXpath = "(//button[normalize-space()='Odhlásit se'])[1]";
-    //this.logoutButton = customElement("button.logout-link");
     this.profileDetailsHeaderXpath =
       "(//h2[normalize-space()='Detaily Profilu'])[1]";
     this.AccountsHeaderXpath = "(//h2[contains(text(),'Účty')])[1]";
@@ -33,10 +41,13 @@ export class DashboardPage extends Header {
     return this;
   }
 
-  profileDetailsHeaderHasTextisVisible(text) {
-    cy.xpath(this.profileDetailsHeaderXpath)
-      .should("be.visible")
-      .and("contain.text", text);
+  profileDetailsHeaderIsVisible() {
+    cy.xpath(this.profileDetailsHeaderXpath).should("be.visible").and("exist");
+    return this;
+  }
+
+  profileDetailsHeaderHasText(text) {
+    cy.xpath(this.profileDetailsHeaderXpath).and("contain.text", text);
     return this;
   }
 
@@ -47,17 +58,14 @@ export class DashboardPage extends Header {
 
   editProfileButtonisClickable() {
     cy.get(this.editProfileButton).click();
-    cy.get("[data-testid='profile-details-title']").should(
-      "contain.text",
-      "Detaily Profilu"
-    );
+    cy.get(this.profileDetailsTitle).should("contain.text", "Detaily Profilu");
     cy.get(this.editProfileButton).click();
     return this;
   }
 
   clickProfileEditButton() {
     cy.get(this.editProfileButton).click();
-    return new ProfileEdit();
+    return new EditProfileSection();
   }
 
   firstNameHasText(name) {
@@ -85,10 +93,28 @@ export class DashboardPage extends Header {
     return this;
   }
 
-  accountsHeaderHasTextisVisible(text) {
-    cy.xpath(this.AccountsHeaderXpath)
-      .should("be.visible")
-      .and("contain.text", text);
+  accountsHeaderHasText(text) {
+    cy.xpath(this.AccountsHeaderXpath).should("contain.text", text);
+    return this;
+  }
+
+  accountsHeaderHeaderisVisible() {
+    cy.xpath(this.AccountsHeaderXpath).should("be.visible").and("exist");
+    return this;
+  }
+
+  accountNumberHeadingHasText(text) {
+    this.accountNumberHeading.get().should("contain", text).and("be.visible");
+    return this;
+  }
+
+  accountBalanceHeadingHasText(text) {
+    this.accountBalanceHeading.get().should("contain", text).and("be.visible");
+    return this;
+  }
+
+  accountTypeHeadingHasText(text) {
+    this.accountTypeHeading.get().should("contain", text).and("be.visible");
     return this;
   }
 

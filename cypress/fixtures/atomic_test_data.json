@@ -13,6 +13,9 @@
   "leftMenu": ["Domů", "Účty", "Transakce", "Podpora"],
   "account": {
     "accountHeader": "Účty",
+    "accountNumberHeading": "Číslo účtu",
+    "accountBalanceHeading": "Zůstatek",
+    "accountTypeHeading": "Typ účtu",
     "startBalance": 10000,
     "expectedBalance": 10000.001,
     "type": "VIP Client",

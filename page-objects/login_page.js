@@ -12,7 +12,6 @@ export class LoginPage extends Header {
     this.nameTitle = customElement("h1.title");
     cy.intercept("/tegb/profile").as("login_api");
     cy.intercept("/tegb/accounts").as("accounts_api");
-    //cy.intercept("/auth/login").as("login_api");
   }
 
   openTegb() {
