@@ -16,14 +16,16 @@ export class Header {
     return this;
   }
 
-  logOutButtonExistsAndHasText(expectedText) {
+  logOutButtonHasText(text) {
+    cy.xpath(this.logoutButtonXpath)
+      .should("contain.text", text);
+    return this;
+  }
+
+  logOutButtonShouldExist() {
     cy.xpath(this.logoutButtonXpath)
       .should("exist")
-      .and("be.visible")
-      .invoke("text")
-      .then((actualText) => {
-        expect(actualText.trim()).to.eq(expectedText);
-      });
+      .and("be.visible");
     return this;
   }
 }

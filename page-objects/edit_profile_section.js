@@ -1,7 +1,6 @@
 import { customElement } from "../helpers/custom_element";
-import { DashboardPage } from "./dashboard_page";
 
-export class ProfileEdit {
+export class EditProfileSection {
   constructor() {
     this.firstNameInput = customElement("[data-testid='chage-name-input']");
     this.lastNameInput = customElement("[data-testid='chage-surname-input']");
@@ -41,6 +40,7 @@ export class ProfileEdit {
 
   clickSave() {
     this.saveForm.get().click();
-    return DashboardPage;
+    const { DashboardPage } = require("./dashboard_page");
+    return new DashboardPage();
   }
 }

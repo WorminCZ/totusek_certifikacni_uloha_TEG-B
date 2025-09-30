@@ -10,7 +10,7 @@ describe("DDT - test account balance", () => {
   });
 
   accountRemain.forEach((ListValue) => {
-    it(`Add balance value ${ListValue.balance} Kč, then check addition`, () => {
+    it(`Should correctly display account balance after adding ${ListValue.balance} Kč`, () => {
       let accountNumber;
       let balance;
       const firstName = faker.person.firstName();
@@ -25,8 +25,8 @@ describe("DDT - test account balance", () => {
 
       user.register(username, password, email);
       user.login(username, password).as("login_response");
-      cy.get("@login_response").then((response) => {
-        const token = response.body.access_token;
+      cy.get("@login_response").then((login_response) => {
+        const token = login_response.body.access_token;
         cy.setCookie("access_token", token);
 
         accounts.createAccount(token, value, type).as("account");
@@ -42,11 +42,9 @@ describe("DDT - test account balance", () => {
           new LoginPage()
             .typeUsername(username)
             .typePassword(password)
+            //API waity jsou clickLogin()
             .clickLogin()
             .accountBalanceCheckValueVisibility(balance);
-
-          cy.wait("@getProfile");
-          cy.wait("@getAccounts");
         });
       });
     });
